@@ -19,16 +19,24 @@ class UrlImageProcess {
         
         $time = date('Ymd_His');
         $name = $data['id'].'_'.$time.'.jpg';
+        
         $url = $data['source_image_url'];
-        $img = Image::make($url);
+        try {
+        	$img = Image::make($url);    
+        }
+        catch (Exception $e)
+        {
+            echo $e->getMessage();
+            echo 'Couldn\'t resolve file from URL '.$url;
+        }
+        
         if ($data['save_original'] == true)
         {
             $originalDir = public_path().'/images/original';
             $path = $originalDir.'/'.$name;
             $img->save($path);
         }
-        
-        
+                
 
         $requiredWidth  = $data['resize_to_width'];
         $requiredHeight = $data['resize_to_height'];
