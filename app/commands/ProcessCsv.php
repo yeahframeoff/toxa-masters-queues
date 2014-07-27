@@ -4,14 +4,14 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class TestQueue extends Command {
+class ProcessCsv extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'test:queue';
+	protected $name = 'command:name';
 
 	/**
 	 * The console command description.
@@ -36,18 +36,9 @@ class TestQueue extends Command {
 	 * @return mixed
 	 */
 	public function fire()
-    {
-        $this->info('Test queue');
-        \Queue::push('\BeansTalkJob',
-            [
-                'user' => 'Alex',
-                'do'   => 'something',
-                'time' => time(),
-                'rand' => rand()
-            ],
-            'default');
-        $this->info('Added job to queue');
-    }
+	{
+		//
+	}
 
 	/**
 	 * Get the console command arguments.
@@ -57,7 +48,7 @@ class TestQueue extends Command {
 	protected function getArguments()
 	{
 		return array(
-			//array('example', InputArgument::REQUIRED, 'An example argument.'),
+			array('example', InputArgument::REQUIRED, 'An example argument.'),
 		);
 	}
 
@@ -69,7 +60,7 @@ class TestQueue extends Command {
 	protected function getOptions()
 	{
 		return array(
-			//array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
 		);
 	}
 

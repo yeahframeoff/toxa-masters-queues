@@ -11,4 +11,4 @@
 |
 */
 
-Artisan::add(new TestQueue);
+Artisan::add(new ProcessCsv);

@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"pda/pheanstalk": "~2.0"
+		"pda/pheanstalk": "~2.0",
+		"iron-io/iron_mq": "3.*@dev",
+		"intervention/image": "2.0.*"
 
 	},
 	"autoload": {
@@ -15,7 +17,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+            "app/libs"
 		]
 	},
 	"scripts": {
