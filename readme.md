@@ -1,3 +1,7 @@
+## About
+
+This is my first attempt to implement any queueing techniques. Here I used [Laravel Queue facade](http://laravel.com/docs/queues) with [beanstalkd](http://kr.github.io/beanstalkd/) driver. Note that in order to perform image processing the package requires you to have GD lib in your PHP module installed.
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

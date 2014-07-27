@@ -16,8 +16,8 @@ return array(
 	*/
 
 	// 'default' => 'sync',
-    // 'default' => 'beanstalkd',
-    'default' => 'iron',
+    'default' => 'beanstalkd',
+    // 'default' => 'iron',
 	/*
 	|--------------------------------------------------------------------------
 	| Queue Connections
@@ -37,13 +37,8 @@ return array(
 
 		'beanstalkd' => array(
 			'driver' => 'beanstalkd',
-			//'host'   => 'localhost',
-            'host'    => 'mq-aws-us-east-1.iron.io',
-            'token'   => 'iJn0g9S7cNA3YY5LOL4jfKbFxGs',
-            'project' => '53d41188549c4f0005000077',
-            'queue'   => 'user-process-queue',
-            'encrypt' => false,
-			//'queue'  => 'default',
+			'host'   => 'localhost',
+            'queue'  => 'default',
 			'ttr'    => 60,
 		),
 

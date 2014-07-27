@@ -13,16 +13,22 @@ use Illuminate\Support\Facades\Facade;
 use Intervention\Image\Facades\Image;
 
 class UrlImageProcess {
-    public function fire($job, $data)
+    public function fire( $job, $data)
     {
+        $this->ensureDir();
+        
+        $time = date('Ymd_His');
+        $name = $data['id'].'_'.$time.'.jpg';
         $url = $data['source_image_url'];
         $img = Image::make($url);
         if ($data['save_original'] == true)
         {
             $originalDir = public_path().'/images/original';
-            $path = $originalDir.'/'.$data['id'].'.jpg';
+            $path = $originalDir.'/'.$name;
             $img->save($path);
         }
+        
+        
 
         $requiredWidth  = $data['resize_to_width'];
         $requiredHeight = $data['resize_to_height'];
@@ -36,10 +42,25 @@ class UrlImageProcess {
             $img->heighten($requiredHeight);
 
         $smallDir = public_path().'/images/small';
-        $path = $smallDir.'/'.$data['id'].'.jpg';
+        $path = $smallDir.'/'.$name;
 
         $img->save($path);
         $img->destroy();
         $job->delete();
+    }
+    
+    public function ensureDir()
+    {
+        $fs = new Filesystem;
+        $dir = public_path();
+        $dirs = $fs->directories($dir);
+        if (!in_array($dir . '/images', $dirs))
+            $fs->makeDirectory($dir . '/images');
+        $dir .= '/images';
+        $dirs = $fs->directories($dir);
+        if (!in_array($dir . '/original', $dirs))
+            $fs->makeDirectory($dir . '/original');
+        if (!in_array($dir . '/small', $dirs))
+            $fs->makeDirectory($dir . '/small');
     }
 }
