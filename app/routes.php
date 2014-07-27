@@ -15,3 +15,9 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Queue::failing(function($connection, $job, $data)
+{
+    echo 'Job ' . $job->getJobId() . ' with data failed ';
+    $job->delete();
+});

@@ -28,6 +28,7 @@ class UrlImageProcess {
         {
             echo $e->getMessage();
             echo 'Couldn\'t resolve file from URL '.$url;
+            throw;
         }
         
         if ($data['save_original'] == true)
@@ -68,12 +69,17 @@ class UrlImageProcess {
         $fs = new Filesystem;
         $dir = public_path();
         $dirs = $fs->directories($dir);
+
         if (!in_array($dir . '/images', $dirs))
             $fs->makeDirectory($dir . '/images');
+
         $dir .= '/images';
+
         $dirs = $fs->directories($dir);
+
         if (!in_array($dir . '/original', $dirs))
             $fs->makeDirectory($dir . '/original');
+
         if (!in_array($dir . '/small', $dirs))
             $fs->makeDirectory($dir . '/small');
     }
