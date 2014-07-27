@@ -9,6 +9,8 @@ php artisan process:csv path-to-your-csv-file
 
 To tell script to save originals too use option ```--save_original```
 
+To try you can use the file I prepared - ```/public/users.csv```
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
