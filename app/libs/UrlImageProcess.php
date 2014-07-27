@@ -8,19 +8,19 @@
 
 namespace libs;
 
-
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Facade;
+use Intervention\Image\Facades\Image;
 
 class UrlImageProcess {
     public function fire($job, $data)
     {
         $url = $data['source_image_url'];
-        $img = Image::make($url)->encode('jpg');
+        $img = Image::make($url);
         if ($data['save_original'] == true)
         {
             $originalDir = public_path().'/images/original';
-            $path = $originalDir.'/'.$data['id'].'jpg';
+            $path = $originalDir.'/'.$data['id'].'.jpg';
             $img->save($path);
         }
 
@@ -28,7 +28,7 @@ class UrlImageProcess {
         $requiredHeight = $data['resize_to_height'];
 
         $requiredRatio = $requiredWidth / $requiredHeight;
-        $ratio = $img->width() / $img->heigth();
+        $ratio = $img->width() / $img->height();
 
         if ($ratio > $requiredRatio)
             $img->widen($requiredWidth);
@@ -36,7 +36,7 @@ class UrlImageProcess {
             $img->heighten($requiredHeight);
 
         $smallDir = public_path().'/images/small';
-        $path = $smallDir.'/'.$data['id'].'jpg';
+        $path = $smallDir.'/'.$data['id'].'.jpg';
 
         $img->save($path);
         $img->destroy();

@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
 		"pda/pheanstalk": "~2.0",
 		"iron-io/iron_mq": "3.*@dev",
-		"intervention/image": "2.0.*"
+		"intervention/image": "2.0.*",
+		"keboola/csv": "1.1.*"
 
 	},
 	"autoload": {

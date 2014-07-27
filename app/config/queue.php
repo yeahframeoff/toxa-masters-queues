@@ -15,10 +15,9 @@ return array(
 	|
 	*/
 
-	'default' => 'sync',
+	// 'default' => 'sync',
     // 'default' => 'beanstalkd',
-    // 'default' => 'iron',
-
+    'default' => 'iron',
 	/*
 	|--------------------------------------------------------------------------
 	| Queue Connections
@@ -38,8 +37,13 @@ return array(
 
 		'beanstalkd' => array(
 			'driver' => 'beanstalkd',
-			'host'   => 'localhost',
-			'queue'  => 'default',
+			//'host'   => 'localhost',
+            'host'    => 'mq-aws-us-east-1.iron.io',
+            'token'   => 'iJn0g9S7cNA3YY5LOL4jfKbFxGs',
+            'project' => '53d41188549c4f0005000077',
+            'queue'   => 'user-process-queue',
+            'encrypt' => false,
+			//'queue'  => 'default',
 			'ttr'    => 60,
 		),
 
@@ -56,10 +60,10 @@ return array(
 			'host'    => 'mq-aws-eu-west-1.iron.io',
 			'token'   => 'iJn0g9S7cNA3YY5LOL4jfKbFxGs',
 			'project' => '53d41188549c4f0005000077',
-			'queue'   => 'user-process-queue',
+			'queue'   => '53d4315ccf6896147841622c',
 			'encrypt' => false,
-            //'protocol' => 'http',
-            //'port' => 80,
+            'protocol' => 'http',
+            'port' => 80,
             'ssl_verifypeer' => false,
 		),
 
