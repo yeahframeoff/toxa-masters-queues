@@ -34,13 +34,19 @@ class UrlImageProcess {
         $requiredHeight = $data['resize_to_height'];
 
         $requiredRatio = $requiredWidth / $requiredHeight;
-        $ratio = $img->width() / $img->height();
+        
+        $width = $img->width();
+        $height = $img->height();
+        $ratio = $width / $height;
 
-        if ($ratio > $requiredRatio)
-            $img->widen($requiredWidth);
-        else
-            $img->heighten($requiredHeight);
-
+        if ($requiredWidth <= $width && $requiredHeight <= $height)
+        {
+            if ($ratio > $requiredRatio)
+                $img->widen($requiredWidth);
+            else
+                $img->heighten($requiredHeight);
+        }
+        
         $smallDir = public_path().'/images/small';
         $path = $smallDir.'/'.$name;
 
